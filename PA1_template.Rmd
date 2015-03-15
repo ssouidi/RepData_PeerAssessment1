@@ -1,4 +1,5 @@
 #Reproducible Research: Peer Assessment 1
+## by Samir Souidi
 
 ##Loading and preprocessing the data
 ```{r}
@@ -11,11 +12,11 @@ names(activity)
 library(lattice)
 activity$date <- as.Date(activity$date, "%Y-%m-%d")
 ```
+
 ##What is mean total number of steps taken per day?
 
-I will use to approaches
 
-First is using aggregate function
+Using aggregate function
 ```{r}
 StepsTotal <- aggregate(steps ~ date, data = activity, sum, na.rm = TRUE)
 ```
@@ -30,7 +31,8 @@ mean(StepsTotal$steps)
 
 median(StepsTotal$steps)
 ```
-The second approach is to make a data frame first with the values that I need I create a data frame with the days and the total of steps by day
+Make data Frame to do calculation
+
 ```{r}
 steps <- rep(NA, 61)
 day <- rep("NA", 61)
@@ -48,12 +50,11 @@ df <- data.frame(day, steps)
 head(df)
 ```
 
-Now i make the histogram
+ histogram
 ```{r}
 hist(df$steps, main = "Total steps by day", xlab = "day", col = "green")
 ```
 
-This second histogram is a bit differnt because the are some day that we have no data for the steps.
 
 ##What is the average daily activity pattern?
 
